@@ -5,7 +5,7 @@ import * as  dotenv from "dotenv"
 const dbConfig = {
     host: process.env.DB_HOST || "localhost",
     user: process.env.DB_USER || "user",
-    password: process.env.DB_PASSWORD || "password", 
+    password: process.env.DB_PASSWORD || "", 
     database: process.env.DB_DATABASE || "customer_service" //base de datos servicio al cliente
 };
 
@@ -22,4 +22,4 @@ async function connectToDatabase () {
     };
 };
 
-module.exports = {connectToDatabase};
+export default connectToDatabase;
