@@ -2,7 +2,6 @@
 
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
 import connectToDatabase from "./config/db.js";
 import router from "./routes/auth.js";
 
@@ -22,7 +21,7 @@ async function startServer(){
 
         const PORT = process.env.PORT || 3001 //puerto del servidor.
         const server = app.listen(PORT, () =>{
-            console.log ("Servidor en ejecucion en http://localhost:", PORT);
+            console.log ("Servidor en ejecucion en http://localhost:"+ PORT);
         });
         
         //manejo de un cierre limpio del servido con SIGINT (Ctrl + C)

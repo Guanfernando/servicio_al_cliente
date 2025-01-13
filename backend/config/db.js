@@ -1,5 +1,6 @@
 import mysql from "mysql2/promise";
 import * as  dotenv from "dotenv"
+dotenv.config()
 
 //configuracion de la base de datos con variables de entorno
 const dbConfig = {
