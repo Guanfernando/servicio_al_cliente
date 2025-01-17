@@ -10,6 +10,8 @@ const app = express();
 
 app.use(cors());// permitir solicitudes de dominios externos 
 app.use (express.json()); //analizar el cuerpo de solicitudes en formato .JSON
+app.use("/api/users", router); // ruta para el router de autenticación
+
 
 
 //funcion para conexion asincrona para iniciar el servidor
@@ -17,7 +19,6 @@ async function startServer(){
     try{
         const db = await connectToDatabase(); //intenta la conexion a la base de datos
         app.set ("db", db); //almacena la conexion para que este disponible en otyras partes del codigo
-        app.use ("/auth", router);
 
         const PORT = process.env.PORT || 3001 //puerto del servidor.
         const server = app.listen(PORT, () =>{

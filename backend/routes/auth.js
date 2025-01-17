@@ -3,6 +3,6 @@ import express from 'express';
 
 
 const router = express.Router();
-router.post ("/regsiter" , registerUser);
+router.post ("/register" , registerUser); //ruta para registrar un usuario
 
 export default router;  
