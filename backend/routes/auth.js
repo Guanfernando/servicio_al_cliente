@@ -1,3 +1,5 @@
+//Registro/backend/routes/auth.js
+
 import registerUser from '../controllers/authControllers.js';
 import express from 'express';
 

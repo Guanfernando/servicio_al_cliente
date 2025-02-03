@@ -1,3 +1,6 @@
+//Registro/backend/index.js
+
+
 //importar dependencias y rutas necesarias backend
 
 import express from "express";

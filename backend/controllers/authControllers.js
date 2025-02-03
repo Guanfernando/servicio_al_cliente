@@ -1,13 +1,15 @@
+//Registro/backend/controllers/aunthcontrollers.js
+
 import bcrypt from "bcrypt";
 
 const registerUser = async (req, res) => {
     const db = req.app.get("db")
-    const {numeroDocumento, nombre, apellido, email, clave, confirmarClave} = req.body; 
+    const {numeroDocumento, nombre, apellido, email, clave,  confirmarClave, emailEmpresarial} = req.body; 
     
     console.log("Datos recibidos del cliente: ",req.body)
 
     //validacion para todos los campos.
-    if (!numeroDocumento || !nombre || !apellido || !email || !clave || !confirmarClave){
+    if (!numeroDocumento || !nombre || !apellido || !email || !clave || !confirmarClave || !emailEmpresarial) {
         return res.status(400).json({error: "Todos los campos son obligatorios."})
     };
    
@@ -18,7 +20,7 @@ const registerUser = async (req, res) => {
 
     if (clave.length < 6 || confirmarClave.length < 6) {
         return res.status(400).json({error:"la contraseña debe tener al menos 6 caracteres"});
-    }
+    };
 
     //validación de las contraseñas
     if (clave !== confirmarClave) { 
@@ -29,8 +31,8 @@ const registerUser = async (req, res) => {
         const hashedclave = await bcrypt.hash(clave, 10);
     
         const [result] = await db.execute(
-            "INSERT INTO usuarios (numeroDocumento, nombre, apellido, email, clave) values (?,?,?,?,?)",
-            [numeroDocumento, nombre, apellido, email, hashedclave]
+            "INSERT INTO usuarios (numeroDocumento, nombre, apellido, email, clave, emailEmpresarial) values (?,?,?,?,?,?)",
+            [numeroDocumento, nombre, apellido, email, hashedclave, emailEmpresarial]
         );
     
         res.status(200).json({
@@ -43,7 +45,7 @@ const registerUser = async (req, res) => {
 
         if(error.code === "ER_DUP_ENTRY"){
             return res.status(400).json({error: "El correo ingresado ya esta registrado"})
-        }
+        };
 
         res.status(500).json({error: "Error interno del servidor"});
     };
