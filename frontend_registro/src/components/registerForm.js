@@ -3,9 +3,7 @@
 import React, { useState } from "react";
 import { Form, Row, Col, Button, Stack, Alert } from "react-bootstrap";
 
-
-
-const RegisterForm = ({ onSubmit, variant, message}) => {
+const RegisterForm = ({ onSubmit, variant, message }) => {
     
   const [id, setId] = useState("");
   const [name, setName] = useState("");
@@ -17,15 +15,28 @@ const RegisterForm = ({ onSubmit, variant, message}) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const generatedEmail = (`${name.toLowerCase()}.${lastName.toLowerCase()}@paseexpress.com`);
+    const generatedEmail = `${name.toLowerCase()}.${lastName.toLowerCase()}@paseexpress.com`;
     setEmailEmpresarial(generatedEmail);
 
     const data = {
-      numeroDocumento:id,
+      numeroDocumento: id,
       nombre: name,
       apellido: lastName,
       email: email,
       clave: password,
+    };
+
+    onSubmit(data);
+  };
+
+  return (
+    <Form onSubmit={handleSubmit}>
+      {/* form fields here */}
+    </Form>
+  );
+};
+
+export default RegisterForm;
       confirmarClave: confirmPassword,
       emailEmpresarial: generatedEmail,
     };

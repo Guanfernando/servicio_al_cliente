@@ -14,7 +14,7 @@ const dbConfig = {
 };
 
 //conexion a la base de datos con promesa asincronica
-async function connectToDatabase () {
+const connectToDatabase = async () => {
     try{
         const db = await mysql.createConnection(dbConfig);
         console.log ("conectado a la base de datos MySQL");
